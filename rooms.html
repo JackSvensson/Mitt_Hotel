@@ -1,3 +1,5 @@
+<!DOCTYPE html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -5,3 +7,92 @@
     <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="css/rooms.css">
 </head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">Glass Onion Hotel</div>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="rooms.html">Rooms</a></li>
+                <li><a href="booking.php">Book Now</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="rooms-container">
+            <h1>Our Single Rooms</h1>
+            
+            <!-- Budget Single Room -->
+            <div class="room-card">
+                <div class="room-image" style="background-image: url('images/budget-room.jpg');"></div>
+                <div class="room-info">
+                    <h2 class="room-type">Budget Single Room</h2>
+                    <p class="room-price">From $79 per night</p>
+                    <p>Comfortable and economical, our budget single rooms are perfect for travelers who want quality accommodation at an affordable price.</p>
+                    <ul class="room-features">
+                        <li>Single bed</li>
+                        <li>24" TV</li>
+                        <li>Free Wi-Fi</li>
+                        <li>Basic bathroom amenities</li>
+                        <li>Air conditioning</li>
+                        <li>Daily housekeeping</li>
+                    </ul>
+                    <a href="booking.php?room=budget" class="book-now-btn">Book Now</a>
+                </div>
+            </div>
+
+            <!-- Standard Single Room -->
+            <div class="room-card">
+                <div class="room-image" style="background-image: url('images/standard-room.jpg');"></div>
+                <div class="room-info">
+                    <h2 class="room-type">Standard Single Room</h2>
+                    <p class="room-price">From $119 per night</p>
+                    <p>Our standard single rooms offer additional comfort and amenities for a more enjoyable stay.</p>
+                    <ul class="room-features">
+                        <li>Premium single bed</li>
+                        <li>32" Smart TV</li>
+                        <li>High-speed Wi-Fi</li>
+                        <li>En-suite bathroom with premium toiletries</li>
+                        <li>Climate control</li>
+                        <li>Work desk</li>
+                        <li>Mini fridge</li>
+                        <li>Daily housekeeping</li>
+                    </ul>
+                    <a href="booking.php?room=standard" class="book-now-btn">Book Now</a>
+                </div>
+            </div>
+
+            <!-- Luxury Single Room -->
+            <div class="room-card">
+                <div class="room-image" style="background-image: url('images/luxury-room.jpg');"></div>
+                <div class="room-info">
+                    <h2 class="room-type">Luxury Single Room</h2>
+                    <p class="room-price">From $189 per night</p>
+                    <p>Experience ultimate comfort in our luxury single rooms, featuring premium amenities and elegant design.</p>
+                    <ul class="room-features">
+                        <li>Luxury king single bed</li>
+                        <li>42" 4K Smart TV</li>
+                        <li>Premium high-speed Wi-Fi</li>
+                        <li>Luxury bathroom with rainfall shower</li>
+                        <li>Climate control</li>
+                        <li>Executive work station</li>
+                        <li>Nespresso coffee machine</li>
+                        <li>Mini bar</li>
+                        <li>Bathrobe and slippers</li>
+                        <li>Evening turndown service</li>
+                        <li>Priority housekeeping</li>
+                    </ul>
+                    <a href="booking.php?room=luxury" class="book-now-btn">Book Now</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Glass Onion Hotel. All rights reserved.</p>
+    </footer>
+</body>
+</html>
+
