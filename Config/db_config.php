@@ -1,12 +1,17 @@
 <?php
+// config/db_config.php
 
-declare(strict_types=1)
-
-define('DB_PATH', '/Users/jacksvensson/Desktop/WebDev/Hotel/Booking Hotel.sqllite3'); // Update this with your full path
+// SQLite database path from your configuration
+$db_path = '/Users/jacksvensson/D.../Booking Hotel.sqlite3';
 
 try {
-    $pdo = new PDO("sqlite:" . DB_PATH);
+    // Create PDO connection
+    $pdo = new PDO("sqlite:$db_path");
+
+    // Set error mode to exception
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+    // Enable foreign keys
     $pdo->exec('PRAGMA foreign_keys = ON;');
 } catch (PDOException $e) {
     die("Connection failed: " . $e->getMessage());
