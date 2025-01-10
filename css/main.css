@@ -119,14 +119,18 @@ nav ul li a {
 
 /* Features Section */
 .features {
+    background-color: rgba(0, 0, 0, 0.8);
+    color: #fff;
     padding: 4rem 2rem;
-    max-width: 1200px;
-    margin: 0 auto;
 }
 
 .features h2 {
+    color: #FFD700;
+    font-size: 2.5rem;
     text-align: center;
     margin-bottom: 3rem;
+    font-family: 'Georgia', serif;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
 
 .feature-grid {
@@ -136,11 +140,31 @@ nav ul li a {
 }
 
 .feature {
-    text-align: center;
+    background: rgba(0, 0, 0, 0.6);
+    border: 1px solid #444;
     padding: 2rem;
-    background-color: #f9f9f9;
+    transition: all 0.3s ease;
     border-radius: 5px;
 }
+
+.feature:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(255, 215, 0, 0.2);
+}
+
+.feature h3 {
+    color: #FFD700;
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+    font-family: 'Georgia', serif;
+}
+
+.feature p {
+    color: #ccc;
+    font-size: 1.1rem;
+    line-height: 1.6;
+}
+
 
 /* Footer */
 footer {
