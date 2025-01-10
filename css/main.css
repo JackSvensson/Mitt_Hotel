@@ -16,41 +16,19 @@ header {
     padding: 1rem 0;
 }
 
-nav {
-    max-width: 1200px;
-    margin: 0 auto;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0 2rem;
-}
 
 .header-menu {
     font-size: 1.5rem;
     font-weight: bold;
 }
 
-nav ul {
-    display: flex;
-    list-style: none;
-}
-
-nav ul li a {
-    color: white;
-    text-decoration: none;
-    padding: 0.5rem 1rem;
-}
-
-nav ul li a:hover {
-    color: #ffd700;
-}
-
-/* Hero Section */
+/* Updated hero section styles */
 .hero {
-    height: 80vh;
-    background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('hotel-bg.jpg');
+    height: 100vh; /* Full viewport height */
+    background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('../img/Glass_Onion_View.jpg');
     background-size: cover;
     background-position: center;
+    background-attachment: fixed; /* Creates a parallax effect */
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -61,20 +39,83 @@ nav ul li a:hover {
 }
 
 .hero h1 {
-    font-size: 3rem;
-    margin-bottom: 1rem;
+    font-size: 4.5rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+    letter-spacing: 2px;
+}
+
+.hero p {
+    font-size: 1.8rem;
+    max-width: 800px;
+    margin: 0 auto 2.5rem auto;
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+    line-height: 1.6;
 }
 
 .cta-button {
     display: inline-block;
-    padding: 1rem 2rem;
-    background-color: #ffd700;
+    padding: 1.2rem 3rem;
+    background-color: #FFD700;
     color: #333;
     text-decoration: none;
-    border-radius: 5px;
-    margin-top: 2rem;
+    border-radius: 50px;
+    font-size: 1.2rem;
     font-weight: bold;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
 }
+
+.cta-button:hover {
+    background-color: #FFC800;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+}
+
+nav {
+    background-color: rgba(51, 51, 51, 0.9);
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+nav ul li {
+    margin: 0 1rem;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+}
+
+.book-now-button {
+    background-color: #FFD700;
+    color: #333;
+    padding: 1rem 2rem;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    transition: all 0.3s ease;
+}
+
+.book-now-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+}
+/* The overlay gradient darkens the image slightly so the white text is readable */
 
 /* Features Section */
 .features {
