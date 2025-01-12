@@ -1,0 +1,47 @@
+# Environment variables
+.env
+
+# Database files
+*.sqlite
+*.sqlite3
+*.db
+
+# macOS system files
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon
+._*
+
+# Windows system files
+Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+ehthumbs_vista.db
+[Dd]esktop.ini
+
+# PHP related
+/vendor/
+composer.lock
+*.log
+
+# IDE specific files
+.idea/
+.vscode/
+*.swp
+*.swo
+*.swn
+.vs/
+*.sublime-workspace
+*.sublime-project
+
+# Temporary files
+*.tmp
+*.temp
+temp/
+tmp/
+
+# Backup files
+*.bak
+*.backup
+*~

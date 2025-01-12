@@ -1,6 +1,6 @@
 <?php
 // booking.php
-require_once 'config/db_config.php';
+require_once __DIR__ . '/Config/db_config.php';
 
 // Function to check if a date is booked
 function isDateBooked($pdo, $date, $room_type)
