@@ -1,8 +1,10 @@
 <?php
-// booking.php
+
 require_once __DIR__ . '/Config/db_config.php';
 
-// Function to check if a date is booked
+require_once __DIR__ . '/pricing.php';
+
+
 function isDateBooked($pdo, $date, $room_type)
 {
     $query = "SELECT COUNT(*) FROM bookings 
@@ -111,76 +113,7 @@ if ($selected_date && $selected_room_type) {
     <title>Book a Room - Glass Onion Hotel</title>
     <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="css/booking.css">
-    <style>
-        .calendar {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 20px 0;
-        }
-
-        .calendar th,
-        .calendar td {
-            border: 1px solid #ddd;
-            padding: 10px;
-            text-align: center;
-        }
-
-        .calendar th {
-            background-color: #f5f5f5;
-            font-weight: bold;
-        }
-
-        .date-select {
-            display: block;
-            width: 100%;
-            height: 100%;
-            text-decoration: none;
-            color: #333;
-            padding: 5px;
-        }
-
-        .date-display {
-            display: block;
-            padding: 5px;
-        }
-
-        .booked {
-            background-color: #ffebee;
-        }
-
-        .booked .date-display {
-            color: #d32f2f;
-        }
-
-        .selected-range {
-            background-color: #e3f2fd;
-        }
-
-        .check-in {
-            background-color: #bbdefb;
-        }
-
-        .check-out {
-            background-color: #bbdefb;
-        }
-
-        .date-info {
-            margin: 20px 0;
-            padding: 15px;
-            background-color: #f5f5f5;
-            border-radius: 5px;
-        }
-
-        .clear-dates {
-            display: inline-block;
-            margin-top: 10px;
-            padding: 5px 10px;
-            background-color: #f44336;
-            color: white;
-            text-decoration: none;
-            border-radius: 3px;
-        }
-    </style>
+    <script src="js/booking.js" defer></script>
 </head>
 
 <body>
@@ -231,7 +164,7 @@ if ($selected_date && $selected_room_type) {
                 </div>
 
                 <?php if ($check_in && $check_out): ?>
-                    <form method="POST" action="process_booking.php">
+                    <form method="POST" action="process_booking.php" class="booking-details-form">
                         <input type="hidden" name="room_type" value="<?php echo htmlspecialchars($selected_room_type); ?>">
                         <input type="hidden" name="check_in" value="<?php echo htmlspecialchars($check_in); ?>">
                         <input type="hidden" name="check_out" value="<?php echo htmlspecialchars($check_out); ?>">
@@ -256,14 +189,97 @@ if ($selected_date && $selected_room_type) {
                         <button type="submit" class="submit-btn">Book Now</button>
                     </form>
                 <?php elseif ($check_in): ?>
-                    <p>Please select your check-out date.</p>
+                    <p class="date-prompt">Please select your check-out date.</p>
                 <?php else: ?>
-                    <p>Please select your check-in date.</p>
+                    <p class="date-prompt">Please select your check-in date.</p>
                 <?php endif; ?>
             <?php else: ?>
-                <p>Please select a room type to view availability.</p>
+                <p class="room-prompt">Please select a room type to view availability.</p>
             <?php endif; ?>
         </div>
+
+        <?php if ($selected_room_type && $check_in && $check_out): ?>
+            <div class="pricing-section">
+                <h3>Room & Features Selection</h3>
+
+                <?php
+                // Calculate number of nights
+                $check_in_date = new DateTime($check_in);
+                $check_out_date = new DateTime($check_out);
+                $nights = $check_in_date->diff($check_out_date)->days;
+
+                // Get base room price
+                $room_prices = [
+                    'budget' => 10,
+                    'standard' => 12,
+                    'luxury' => 15
+                ];
+                $base_price = $room_prices[$selected_room_type];
+                $total_room_price = $base_price * $nights;
+
+                // Calculate discount if applicable
+                $discount = ($nights >= 3) ? 0.25 : 0;
+                $discounted_price = $total_room_price * (1 - $discount);
+                ?>
+
+                <div class="price-breakdown">
+                    <h4>Room Price Breakdown</h4>
+                    <p>Base price per night: $<?php echo $base_price; ?></p>
+                    <p>Number of nights: <?php echo $nights; ?></p>
+                    <?php if ($discount > 0): ?>
+                        <p class="discount-note">25% discount applied for 3+ nights stay!</p>
+                        <p>Original total: $<?php echo number_format($total_room_price, 2); ?></p>
+                        <p>Discounted total: $<?php echo number_format($discounted_price, 2); ?></p>
+                    <?php else: ?>
+                        <p>Total room cost: $<?php echo number_format($total_room_price, 2); ?></p>
+                    <?php endif; ?>
+                </div>
+
+                <div class="features-selection">
+                    <h4>Add Features (price per stay):</h4>
+                    <div class="features-grid">
+                        <div class="feature-card">
+                            <h5>The Enigma Pool</h5>
+                            <p class="feature-description">Take a mysterious dip in our signature pool</p>
+                            <p class="feature-price">$3 for entire stay</p>
+                            <label class="feature-checkbox">
+                                <input type="checkbox" name="features[]" value="pool" data-price="3">
+                                Add to booking
+                            </label>
+                        </div>
+
+                        <div class="feature-card">
+                            <h5>Detective's Ping Pong Table</h5>
+                            <p class="feature-description">Challenge your deductive skills</p>
+                            <p class="feature-price">$1 for entire stay</p>
+                            <label class="feature-checkbox">
+                                <input type="checkbox" name="features[]" value="pingpong" data-price="1">
+                                Add to booking
+                            </label>
+                        </div>
+
+                        <div class="feature-card">
+                            <h5>Glass Onion Bar</h5>
+                            <p class="feature-description">Includes welcome drink</p>
+                            <p class="feature-price">$2 for entire stay</p>
+                            <label class="feature-checkbox">
+                                <input type="checkbox" name="features[]" value="bar" data-price="2">
+                                Add to booking
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="total-price">
+                    <h4>Total Price Summary</h4>
+                    <div id="price-summary">
+                        <p>Room total: $<span id="room-total"><?php echo number_format($discounted_price, 2); ?></span></p>
+                        <p>Features total: $<span id="features-total">0.00</span></p>
+                        <p class="final-total">Final total: $<span id="final-total"><?php echo number_format($discounted_price, 2); ?></span></p>
+                    </div>
+                </div>
+            </div>
+        <?php endif; ?>
     </main>
 
     <footer>

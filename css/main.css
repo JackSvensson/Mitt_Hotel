@@ -7,11 +7,14 @@
 body {
     font-family: Arial, sans-serif;
     line-height: 1.6;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
 }
 
 /* Header and Navigation */
 header {
-    background-color: #333;
+    background-color: #1a1a1a;
     color: white;
     padding: 1rem 0;
 }
@@ -75,8 +78,9 @@ header {
 }
 
 nav {
-    background-color: rgba(51, 51, 51, 0.9);
-    padding: 1rem 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -85,8 +89,7 @@ nav {
 nav ul {
     display: flex;
     list-style: none;
-    margin: 0;
-    padding: 0;
+    gap: 2rem;
 }
 
 nav ul li {
@@ -96,8 +99,12 @@ nav ul li {
 nav ul li a {
     color: white;
     text-decoration: none;
+    transition: color 0.3s ease;
 }
 
+nav ul li a:hover {
+    color: #FFD700;
+}
 .book-now-button {
     background-color: #FFD700;
     color: #333;
@@ -117,52 +124,56 @@ nav ul li a {
 }
 /* The overlay gradient darkens the image slightly so the white text is readable */
 
-/* Features section styling */
 .features {
     padding: 4rem 2rem;
     background-color: rgba(0, 0, 0, 0.8);
     color: #fff;
-}
-
-.features h2 {
-    text-align: center;
-    font-size: 2.5rem;
-    margin-bottom: 3rem;
-    color: #FFD700;
-}
-
-.feature-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 2rem;
     max-width: 1200px;
     margin: 0 auto;
 }
 
-.feature {
-    background: rgba(0, 0, 0, 0.6);
-    padding: 2rem;
+.features h2 {
     text-align: center;
-    border-radius: 10px;
-    border: 1px solid #333;
-    transition: transform 0.3s ease;
+    color: #FFD700;
+    font-size: 2.5rem;
+    margin-bottom: 3rem;
 }
 
-.feature:hover {
+.activities-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+    margin-bottom: 3rem;
+}
+
+.activity-card {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 2rem;
+    border-radius: 8px;
+    border: 1px solid #666;
+    transition: all 0.3s ease;
+}
+
+.activity-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 5px 15px rgba(255, 215, 0, 0.2);
+    box-shadow: 0 4px 15px rgba(255, 215, 0, 0.2);
 }
 
-.feature h3 {
+.activity-card h4 {
     color: #FFD700;
     font-size: 1.5rem;
     margin-bottom: 1rem;
 }
 
-.feature p {
-    color: #fff;
-    line-height: 1.6;
-    font-size: 1.1rem;
+.activity-description {
+    color: #ccc;
+    margin-bottom: 1rem;
+}
+
+.activity-price {
+    color: #FFD700;
+    font-weight: bold;
+    margin-bottom: 1.5rem;
 }
 
 
