@@ -1,5 +1,4 @@
 <?php
-// process_booking.php
 require_once __DIR__ . '/db_config.php';
 require_once __DIR__ . '/../pricing.php';
 
