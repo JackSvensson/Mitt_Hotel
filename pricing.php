@@ -1,5 +1,6 @@
 <?php
 
+declare(strict_types=1);
 
 // Room rates per night
 function getRoomPrices()

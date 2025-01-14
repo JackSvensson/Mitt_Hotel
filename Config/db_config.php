@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 $db_path = __DIR__ . '/../Booking_db.sqlite3';
 
 try {
