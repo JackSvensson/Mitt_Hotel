@@ -1,5 +1,5 @@
 <?php
-// pricing.php
+
 
 // Room rates per night
 function getRoomPrices()

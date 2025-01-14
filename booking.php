@@ -75,7 +75,7 @@ function generateCalendar($pdo, $selected_room_type = '', $check_in = '', $check
         $day_of_week++;
     }
 
-    // Fill remaining cells
+
     while ($day_of_week < 7) {
         $calendar .= '<td></td>';
         $day_of_week++;
