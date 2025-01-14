@@ -21,6 +21,24 @@ header {
     padding: 1rem 0;
 }
 
+.hotel-stars {
+    color: #FFD700;
+    margin-left: 10px;
+    font-size: 1.2rem;
+    letter-spacing: 3px;
+    vertical-align: middle;
+    text-shadow: 0 0 2px rgba(0,0,0,0.3);
+}
+
+.Header-menu {
+    color: #FFD700;
+    font-size: 1.5rem;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
 nav {
     max-width: 1200px;
     margin: 0 auto;

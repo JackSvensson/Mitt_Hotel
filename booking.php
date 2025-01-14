@@ -113,13 +113,15 @@ if ($selected_date && $selected_room_type) {
     <title>Book a Room - Glass Onion Hotel</title>
     <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="css/booking.css">
-    <script src="js/booking.js" defer></script>
+    <script src="booking.js" defer></script>
 </head>
 
 <body>
     <header>
         <nav>
-            <div class="logo">Glass Onion Hotel</div>
+            <div class="Header-menu">Glass Onion Hotel
+                <span class="hotel-stars">★★★</span>
+            </div>
             <ul>
                 <li><a href="index.html">Home</a></li>
                 <li><a href="rooms.html">Rooms</a></li>
@@ -134,7 +136,7 @@ if ($selected_date && $selected_room_type) {
             <h2>Book Your Stay - January 2025</h2>
 
             <!-- Room type selection form -->
-            <form method="get" class="room-selection">
+            <form method="GET" class="room-selection">
                 <div class="form-group">
                     <label for="room_type">Select Room Type:</label>
                     <select id="room_type" name="room_type" onchange="this.form.submit()">
@@ -164,14 +166,15 @@ if ($selected_date && $selected_room_type) {
                 </div>
 
                 <?php if ($check_in && $check_out): ?>
-                    <form method="POST" action="process_booking.php" class="booking-details-form">
+                    <form method="POST" action="Config/process_booking.php" class="booking-details-form">
                         <input type="hidden" name="room_type" value="<?php echo htmlspecialchars($selected_room_type); ?>">
                         <input type="hidden" name="check_in" value="<?php echo htmlspecialchars($check_in); ?>">
                         <input type="hidden" name="check_out" value="<?php echo htmlspecialchars($check_out); ?>">
 
+
                         <div class="form-group">
-                            <label for="name">Full Name:</label>
-                            <input type="text" id="name" name="name" required>
+                            <label for="first_name">Name:</label>
+                            <input type="text" id="first_name" name="first_name" required>
                         </div>
 
                         <div class="form-group">
@@ -184,6 +187,46 @@ if ($selected_date && $selected_room_type) {
                             <select id="guests" name="guests" required>
                                 <option value="1">1</option>
                             </select>
+                        </div>
+
+                        <div class="features-selection">
+                            <h4>Add Features (price per stay):</h4>
+                            <div class="features-grid">
+                                <div class="feature-card">
+                                    <h5>The Enigma Pool</h5>
+                                    <p class="feature-description">Take a mysterious dip in our signature pool</p>
+                                    <p class="feature-price">$3 for entire stay</p>
+                                    <label class="feature-checkbox">
+                                        <input type="checkbox" name="features[]" value="pool" data-price="3">
+                                        Add to booking
+                                    </label>
+                                </div>
+
+                                <div class="feature-card">
+                                    <h5>Detective's Ping Pong Table</h5>
+                                    <p class="feature-description">Challenge your deductive skills</p>
+                                    <p class="feature-price">$1 for entire stay</p>
+                                    <label class="feature-checkbox">
+                                        <input type="checkbox" name="features[]" value="pingpong" data-price="1">
+                                        Add to booking
+                                    </label>
+                                </div>
+
+                                <div class="feature-card">
+                                    <h5>Glass Onion Bar</h5>
+                                    <p class="feature-description">Includes welcome drink</p>
+                                    <p class="feature-price">$2 for entire stay</p>
+                                    <label class="feature-checkbox">
+                                        <input type="checkbox" name="features[]" value="bar" data-price="2">
+                                        Add to booking
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="transfer_code">Transfer Code:</label>
+                            <input type="text" id="transfer_code" name="transfer_code" required>
                         </div>
 
                         <button type="submit" class="submit-btn">Book Now</button>
@@ -233,41 +276,6 @@ if ($selected_date && $selected_room_type) {
                     <?php else: ?>
                         <p>Total room cost: $<?php echo number_format($total_room_price, 2); ?></p>
                     <?php endif; ?>
-                </div>
-
-                <div class="features-selection">
-                    <h4>Add Features (price per stay):</h4>
-                    <div class="features-grid">
-                        <div class="feature-card">
-                            <h5>The Enigma Pool</h5>
-                            <p class="feature-description">Take a mysterious dip in our signature pool</p>
-                            <p class="feature-price">$3 for entire stay</p>
-                            <label class="feature-checkbox">
-                                <input type="checkbox" name="features[]" value="pool" data-price="3">
-                                Add to booking
-                            </label>
-                        </div>
-
-                        <div class="feature-card">
-                            <h5>Detective's Ping Pong Table</h5>
-                            <p class="feature-description">Challenge your deductive skills</p>
-                            <p class="feature-price">$1 for entire stay</p>
-                            <label class="feature-checkbox">
-                                <input type="checkbox" name="features[]" value="pingpong" data-price="1">
-                                Add to booking
-                            </label>
-                        </div>
-
-                        <div class="feature-card">
-                            <h5>Glass Onion Bar</h5>
-                            <p class="feature-description">Includes welcome drink</p>
-                            <p class="feature-price">$2 for entire stay</p>
-                            <label class="feature-checkbox">
-                                <input type="checkbox" name="features[]" value="bar" data-price="2">
-                                Add to booking
-                            </label>
-                        </div>
-                    </div>
                 </div>
 
                 <div class="total-price">
